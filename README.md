@@ -105,11 +105,16 @@ Requires CMake 3.20+ and Visual Studio 2022 (or the Build Tools) with the C++
 workload. All dependencies are vendored in `third_party/`.
 
 ```
-cmake -S . -B build -A x64      # use -A Win32 for the 32-bit add-on
-cmake --build build --config Release
+cmake -S . -B build-x64 -A x64
+cmake --build build-x64 --config Release
+
+cmake -S . -B build-x86 -A Win32
+cmake --build build-x86 --config Release
 ```
 
-The add-on is written to `build\Release\`. GitHub Actions builds both
+The add-ons are written to `build-x64\Release\HDRAnalysisLogger.addon64` and
+`build-x86\Release\HDRAnalysisLogger.addon32`. Each architecture needs its own
+build folder. GitHub Actions builds both
 architectures on every push and attaches them to a release when a `v*` tag is
 pushed.
 
